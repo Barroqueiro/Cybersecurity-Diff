@@ -99,7 +99,6 @@ LAST=$(tail -n1 $FILE)
 flag=0
 
 for file in * ; do
-if 
     while IFS="" read -r p || [ -n "$p" ]
     do
         if [ $p = $file ]
