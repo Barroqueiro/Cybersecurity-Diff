@@ -110,7 +110,7 @@ if
     if [ flag = 0 ]
     then
         COMPARE=$file
-    do
+    fi
 done
 
 echo $COMPARE
