@@ -1,0 +1,17 @@
+name: 'Cybersecurity Diff'
+author: 'Dinis Cruz'
+description: 'Calculate the diferences between 2 scans and a baseline'
+inputs:
+  debug:
+    descripton: 'Enable debugging: Getting shell scripts output and raw tools information'
+    default: 'false'
+runs:
+  using: "composite"
+  steps:
+    - name: Entrypoint
+      run: >
+            ${{ github.action_path }}/entrypoint.sh
+            --debug "${{ inputs.debug }}"
+            --action-path "${{ github.action_path }}"
+            --repo-name "${{ github.event.repository.name }}"
+      shell: bash
