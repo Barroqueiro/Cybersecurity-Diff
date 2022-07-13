@@ -89,7 +89,7 @@ echo "::set-output name=artifact-name::Diff_${file_base}_${file_diff}"
 
 mkdir temp_baseline
 mkdir temp_diff
-mkdir $DIFF_DIR
+mkdir -p $DIFF_DIR/Debug
 
 for base in $BASELINE/Debug/**/*; do
     cp $base ./temp_baseline
@@ -108,7 +108,7 @@ for file_base in temp_baseline/* ; do
             case $file_diff in
 
                 SecretsReport.json)
-                    SCAN_DIR=$DIFF_DIR/SecretScan
+                    SCAN_DIR=$DIFF_DIR/Debug/SecretScan
                     mkdir $SCAN_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/SecretsReport.json \
@@ -121,8 +121,10 @@ for file_base in temp_baseline/* ; do
                 ;;
 
                 HorusecReport.json)
-                    SCAN_DIR=$DIFF_DIR/VulnerabilityScan
+                    SCAN_DIR=$DIFF_DIR/Debug/VulnerabilityScan
+                    REP_DIR=$DIFF_DIR/VulnerabilityScan
                     mkdir $SCAN_DIR
+                    mkdir $REP_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/HorusecReport.json \
                             --diff temp_diff/HorusecReport.json \
@@ -131,11 +133,23 @@ for file_base in temp_baseline/* ; do
                             --output-added $SCAN_DIR/AddedHorusecReport.json \
                             --output-removed $SCAN_DIR/RemovedHorusecReport.json \
                             --separator "-"
-                
+                    
+                    python3 $ACTION_PATH/Reporting/scripts/HorusecReporting.py \
+                            --json  $SCAN_DIR/AddedHorusecReport.json \
+                            --current-path $ACTION_PATH/Reporting \
+                            --output $REP_DIR/AddedHorusecReport \
+                            --output-styles "HTML,MD"
+
+                    python3 $ACTION_PATH/Reporting/scripts/HorusecReporting.py \
+                            --json  $SCAN_DIR/RemovedHorusecReport.json \
+                            --current-path $ACTION_PATH/Reporting \
+                            --output $REP_DIR/RemovedHorusecReport \
+                            --output-styles "HTML,MD"
+
                 ;;
 
                 DockleReport.json)
-                    SCAN_DIR=$DIFF_DIR/DockleScan
+                    SCAN_DIR=$DIFF_DIR/Debug/DockleScan
                     mkdir $SCAN_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/DockleReport.json \
@@ -149,7 +163,7 @@ for file_base in temp_baseline/* ; do
                 ;;
 
                 TrivyReport.json)
-                    SCAN_DIR=$DIFF_DIR/TrivyScan
+                    SCAN_DIR=$DIFF_DIR/Debug/TrivyScan
                     mkdir $SCAN_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/TrivyReport.json \
@@ -163,7 +177,7 @@ for file_base in temp_baseline/* ; do
                 ;;
 
                 ZapReport.json)
-                    SCAN_DIR=$DIFF_DIR/ZapScan
+                    SCAN_DIR=$DIFF_DIR/Debug/ZapScan
                     mkdir $SCAN_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/ZapReport.json \
