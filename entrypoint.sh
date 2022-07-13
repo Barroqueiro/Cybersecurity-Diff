@@ -63,26 +63,12 @@ function usage() {
     exit 1
 }
 
-function message() {
-    if [ $1 = 1 ]
-    then
-        if [ $2 = "true" ]
-        then
-            echo "::error::$3 found problems, check the artifacts for more information"
-            ret=1
-        else
-            echo "::notice::$3 found problems but non blocking was active during this run"
-        fi
-    else
-        echo "::notice::$3 did not find any problems"
-    fi
-}
-
 # Parse params
 while [[ "$#" > 0 ]]; do case $1 in
   --debug) DEBUG="$2"; shift;shift;;
   --action-path) ACTION_PATH="$2"; shift;shift;;
-  --repo-name) REPO_NAME="$2"; shift;shift;;
+  --baseline) BASELINE="$2"; shift;shift;;
+  --diff) DIFF="$2"; shift;shift;;
   *) usage "Unknown parameter passed: $1"; shift; shift;;
 esac; done
 
@@ -91,28 +77,103 @@ then
     set -x
 fi
 
-FILE=config.txt
+echo $BASELINE
+echo $DIFF
 
-BASELINE=$(head -n1 $FILE)
-LAST=$(tail -n1 $FILE)
+file_base=${BASELINE##*/}
+file_diff=${DIFF##*/}
 
-flag=0
+DIFF_DIR="Diff_${file_base}_${file_diff}"
 
-for file in * ; do
-    flag=0  
-    while IFS="" read -r p || [ -n "$p" ]
-    do
-        if [ $p = $file ]
-        then
-            flag=1
-        fi
-    done < $FILE
-    if [ flag = 0 ]
-    then
-        COMPARE=$file
-    fi
+mkdir temp_baseline
+mkdir temp_diff
+mkdir $DIFF_DIR
+
+for base in $BASELINE/debug/**/*; do
+    cp $base ./temp_baseline
 done
 
-echo $COMPARE
-echo $BASELINE
-echo $LAST
+for diff in $DIFF/debug/**/*; do
+    cp $diff ./temp_diff
+done
+
+for file_base in temp_baseline/* ; do
+    for file_diff in temp_diff/* ; do
+        file_base=${file_base##*/}
+        file_diff=${file_diff##*/}
+        if [ $file_diff = $file_base ]
+        then
+            case $file_diff in
+
+                SecretsReport.json)
+                    SCAN_DIR=$DIFF_DIR/SecretScan
+                    mkdir $SCAN_DIR
+                    python3 comparing.py \
+                            --baseline temp_baseline/SecretsReport.json \
+                            --diff temp_diff/SecretsReport.json \
+                            --key "" \
+                            --ignore "Date,File" \
+                            --output-added $SCAN_DIR/AddedSecretReport.json \
+                            --output-removed $SCAN_DIR/RemovedSecretReport.json \
+                            --separator "-"
+                ;;
+
+                HorusecReport.json)
+                    SCAN_DIR=$DIFF_DIR/VulnerabilityScan
+                    mkdir $SCAN_DIR
+                    python3 comparing.py \
+                            --baseline temp_baseline/HorusecReport.json \
+                            --diff temp_diff/HorusecReport.json \
+                            --key "analysisVulnerabilities" \
+                            --ignore "analysisID,createdAt,vulnerabilities-vulnerabilityID,vulnerabilityID" \
+                            --output-added $SCAN_DIR/AddedHorusecReport.json \
+                            --output-removed $SCAN_DIR/RemovedHorusecReport.json \
+                            --separator "-"
+                
+                ;;
+
+                DockleReport.json)
+                    SCAN_DIR=$DIFF_DIR/DockleScan
+                    mkdir $SCAN_DIR
+                    python3 comparing.py \
+                            --baseline temp_baseline/DockleReport.json \
+                            --diff temp_diff/DockleReport.json \
+                            --key "details" \
+                            --ignore "" \
+                            --output-added $SCAN_DIR/AddedDockleReport.json \
+                            --output-removed $SCAN_DIR/RemovedDockleReport.json \
+                            --separator "-"
+
+                ;;
+
+                TrivyReport.json)
+                    SCAN_DIR=$DIFF_DIR/TrivyScan
+                    mkdir $SCAN_DIR
+                    python3 comparing.py \
+                            --baseline temp_baseline/TrivyReport.json \
+                            --diff temp_diff/TrivyReport.json \
+                            --key "Results-[0]-Vulnerabilities" \
+                            --ignore "" \
+                            --output-added $SCAN_DIR/AddedTrivyReport.json \
+                            --output-removed $SCAN_DIR/RemovedTrivyReport.json \
+                            --separator "-"
+
+                ;;
+
+                ZapReport.json)
+                    SCAN_DIR=$DIFF_DIR/ZapScan
+                    mkdir $SCAN_DIR
+                    python3 comparing.py \
+                            --baseline temp_baseline/ZapReport.json \
+                            --diff temp_diff/ZapReport.json \
+                            --key "site-[1]-alerts" \
+                            --ignore "" \
+                            --output-added $SCAN_DIR/AddedZapReport.json \
+                            --output-removed $SCAN_DIR/RemovedZapReport.json \
+                            --separator "-"
+
+                ;;
+    esac
+        fi
+    done
+done

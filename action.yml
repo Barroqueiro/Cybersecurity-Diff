@@ -5,13 +5,28 @@ inputs:
   debug:
     descripton: 'Enable debugging: Getting shell scripts output and raw tools information'
     default: 'false'
+  baseline:
+    descripton: 'Baseline'
+    required: true
+  diff:
+    descripton: 'Different Scan'
+    required: true
 runs:
   using: "composite"
   steps:
+    - name: Get Reporting
+      run: ${{ github.action_path }}/sparse.sh
+      shell: bash
     - name: Entrypoint
       run: >
             ${{ github.action_path }}/entrypoint.sh
             --debug "${{ inputs.debug }}"
             --action-path "${{ github.action_path }}"
-            --repo-name "${{ github.event.repository.name }}"
+            --baseline "${{ inputs.baseline }}"
+            --diff "${{ inputs.diff }}"
       shell: bash
+    - name: Upload artifact
+      if: always()
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: Diff_${{ inputs.baseline }}_${{ inputs.diff }}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META charset="UTF-8" />
+    <title>
+        Dockle Report
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  </head>  </head>
+  </head>
+<body>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Dockle Report</h1>
+    </div>
+  </div>
+  <div class="container">
+  
+      
+      <a class="btn btn-primary btn-block" data-bs-toggle="collapse" href="#FATAL" role="button" aria-expanded="false" aria-controls="collapseExample" style="background-color: #F3836B;width: 100%;font-weight: bold;color:black;border-color: black">
+              Found 2 Fatal Severity Vulnerabilities
+      </a>
+      <div>&nbsp;</div>
+      <div class="collapse" id="FATAL">
+      
+            <table class="table table-sm">
+              <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#FATALVulnerability1" role="button" aria-expanded="true" aria-controls="collapseExample" style="background-color: #F3836B;width: 100%;font-weight: bold;color:black;; border-color: black">
+                  Fatal Vulnerability 1
+              </a>
+              <tbody class="collapse show" id="FATALVulnerability1">
+                <tr>
+                  <td>Code</td>
+                  <td>CIS-DI-0010</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>Do not store credential in environment variables/files</td>
+                </tr>
+                <tr>
+                  <td>Severity</td>
+                  <td>FATAL</td>
+                </tr>
+                <tr>
+                  <td>Alerts</td>
+                  <td>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/guardian/conf/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/rest_framework_nested/runtests/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/constance/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/grappelli/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/django_premailer/tests/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/newsletter/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/django_countries/tests/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/userena/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/easy_thumbnails/tests/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/django_extensions/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/rest_framework/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/userena/runtests/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/django_js_reverse/tests/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                      <b> Suspicious filename found : usr/local/lib/python2.7/dist-packages/cssutils/settings.py (You can suppress it with &#34;-af settings.py&#34;) <br></b>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+            <table class="table table-sm">
+              <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#FATALVulnerability2" role="button" aria-expanded="true" aria-controls="collapseExample" style="background-color: #F3836B;width: 100%;font-weight: bold;color:black;; border-color: black">
+                  Fatal Vulnerability 2
+              </a>
+              <tbody class="collapse show" id="FATALVulnerability2">
+                <tr>
+                  <td>Code</td>
+                  <td>DKL-DI-0005</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>Clear apt-get caches</td>
+                </tr>
+                <tr>
+                  <td>Severity</td>
+                  <td>FATAL</td>
+                </tr>
+                <tr>
+                  <td>Alerts</td>
+                  <td>
+                    
+                      <b> Use &#39;rm -rf /var/lib/apt/lists&#39; after &#39;apt-get install|update&#39; : /bin/sh -c apt update  &amp;&amp; apt -y -q install build-essential libssl-dev libffi-dev python3-dev cargo                           libjpeg-dev libpq-dev postgresql-client curl git python-pip                           vim libcurl4-openssl-dev uwsgi uwsgi-plugin-python                           python-dev libxml2-dev libxslt1-dev libyaml-dev <br></b>
+                    
+                      <b> Use &#39;rm -rf /var/lib/apt/lists&#39; after &#39;apt-get install|update&#39; : /bin/sh -c curl -sL https://deb.nodesource.com/setup_12.x | bash -     &amp;&amp; apt-get install -y nodejs <br></b>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+      </div>
+      
+    
+      
+      <a class="btn btn-primary btn-block" data-bs-toggle="collapse" href="#WARN" role="button" aria-expanded="false" aria-controls="collapseExample" style="background-color: #FFCD00;width: 100%;font-weight: bold;color:black;border-color: black">
+              Found 1 Warn Severity Vulnerabilities
+      </a>
+      <div>&nbsp;</div>
+      <div class="collapse" id="WARN">
+      
+            <table class="table table-sm">
+              <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#WARNVulnerability1" role="button" aria-expanded="true" aria-controls="collapseExample" style="background-color: #FFCD00;width: 100%;font-weight: bold;color:black;; border-color: black">
+                  Warn Vulnerability 1
+              </a>
+              <tbody class="collapse show" id="WARNVulnerability1">
+                <tr>
+                  <td>Code</td>
+                  <td>CIS-DI-0001</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>Create a user for the container</td>
+                </tr>
+                <tr>
+                  <td>Severity</td>
+                  <td>WARN</td>
+                </tr>
+                <tr>
+                  <td>Alerts</td>
+                  <td>
+                    
+                      <b> Last user should not be root <br></b>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+      </div>
+      
+    
+      
+      <a class="btn btn-primary btn-block" data-bs-toggle="collapse" href="#INFO" role="button" aria-expanded="false" aria-controls="collapseExample" style="background-color: #53DAC1;width: 100%;font-weight: bold;color:black;border-color: black">
+              Found 3 Info Severity Vulnerabilities
+      </a>
+      <div>&nbsp;</div>
+      <div class="collapse" id="INFO">
+      
+            <table class="table table-sm">
+              <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#INFOVulnerability1" role="button" aria-expanded="true" aria-controls="collapseExample" style="background-color: #53DAC1;width: 100%;font-weight: bold;color:black;; border-color: black">
+                  Info Vulnerability 1
+              </a>
+              <tbody class="collapse show" id="INFOVulnerability1">
+                <tr>
+                  <td>Code</td>
+                  <td>CIS-DI-0005</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>Enable Content trust for Docker</td>
+                </tr>
+                <tr>
+                  <td>Severity</td>
+                  <td>INFO</td>
+                </tr>
+                <tr>
+                  <td>Alerts</td>
+                  <td>
+                    
+                      <b> export DOCKER_CONTENT_TRUST=1 before docker pull/build <br></b>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+            <table class="table table-sm">
+              <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#INFOVulnerability2" role="button" aria-expanded="true" aria-controls="collapseExample" style="background-color: #53DAC1;width: 100%;font-weight: bold;color:black;; border-color: black">
+                  Info Vulnerability 2
+              </a>
+              <tbody class="collapse show" id="INFOVulnerability2">
+                <tr>
+                  <td>Code</td>
+                  <td>CIS-DI-0006</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>Add HEALTHCHECK instruction to the container image</td>
+                </tr>
+                <tr>
+                  <td>Severity</td>
+                  <td>INFO</td>
+                </tr>
+                <tr>
+                  <td>Alerts</td>
+                  <td>
+                    
+                      <b> not found HEALTHCHECK statement <br></b>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+            <table class="table table-sm">
+              <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#INFOVulnerability3" role="button" aria-expanded="true" aria-controls="collapseExample" style="background-color: #53DAC1;width: 100%;font-weight: bold;color:black;; border-color: black">
+                  Info Vulnerability 3
+              </a>
+              <tbody class="collapse show" id="INFOVulnerability3">
+                <tr>
+                  <td>Code</td>
+                  <td>CIS-DI-0008</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>Confirm safety of setuid/setgid files</td>
+                </tr>
+                <tr>
+                  <td>Severity</td>
+                  <td>INFO</td>
+                </tr>
+                <tr>
+                  <td>Alerts</td>
+                  <td>
+                    
+                      <b> setuid file: urwxr-xr-x usr/lib/openssh/ssh-keysign <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x bin/mount <br></b>
+                    
+                      <b> setgid file: grwxr-xr-x usr/bin/wall <br></b>
+                    
+                      <b> setgid file: grwxr-xr-x usr/bin/ssh-agent <br></b>
+                    
+                      <b> setgid file: grwxr-xr-x usr/bin/expiry <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x usr/bin/newgrp <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x bin/umount <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x bin/su <br></b>
+                    
+                      <b> setgid file: grwxr-xr-x sbin/pam_extrausers_chkpwd <br></b>
+                    
+                      <b> setgid file: grwxr-xr-x sbin/unix_chkpwd <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x usr/bin/chsh <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x usr/bin/passwd <br></b>
+                    
+                      <b> setuid file: urwxr-xr-- usr/lib/dbus-1.0/dbus-daemon-launch-helper <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x usr/bin/gpasswd <br></b>
+                    
+                      <b> setgid file: grwxr-xr-x usr/bin/chage <br></b>
+                    
+                      <b> setuid file: urwxr-xr-x usr/bin/chfn <br></b>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+      </div>
+      
+    
+    </div>
+    <div class="text-center p-3" style="background-color:white;">
+      <p>21/06/2022 10:19:00</p>
+    </div>
+  </body>
+</html>
