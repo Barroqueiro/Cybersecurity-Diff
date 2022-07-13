@@ -18,6 +18,7 @@ runs:
       run: ${{ github.action_path }}/sparse.sh
       shell: bash
     - name: Entrypoint
+      id: entrypoint
       run: >
             ${{ github.action_path }}/entrypoint.sh
             --debug "${{ inputs.debug }}"
@@ -29,4 +30,4 @@ runs:
       if: always()
       uses: actions/upload-artifact@v3.1.0
       with:
-        path: Diff_${{ inputs.baseline }}_${{ inputs.diff }}
+        path: ${{ steps.entrypoint.outputs.artifact-name }}

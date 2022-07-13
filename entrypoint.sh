@@ -85,6 +85,8 @@ file_diff=${DIFF##*/}
 
 DIFF_DIR="Diff_${file_base}_${file_diff}"
 
+echo "::set-output name=artifact-name::Diff_${file_base}_${file_diff}"
+
 mkdir temp_baseline
 mkdir temp_diff
 mkdir $DIFF_DIR
