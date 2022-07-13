@@ -89,11 +89,11 @@ mkdir temp_baseline
 mkdir temp_diff
 mkdir $DIFF_DIR
 
-for base in $BASELINE/debug/**/*; do
+for base in $BASELINE/Debug/**/*; do
     cp $base ./temp_baseline
 done
 
-for diff in $DIFF/debug/**/*; do
+for diff in $DIFF/Debug/**/*; do
     cp $diff ./temp_diff
 done
 
