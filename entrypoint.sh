@@ -134,17 +134,13 @@ for file_base in temp_baseline/* ; do
                             --output-removed $SCAN_DIR/RemovedHorusecReport.json \
                             --separator "-"
                     
-                    python3 $ACTION_PATH/Reporting/scripts/HorusecReporting.py \
-                            --json  $SCAN_DIR/AddedHorusecReport.json \
-                            --current-path $ACTION_PATH/Reporting \
-                            --output $REP_DIR/AddedHorusecReport \
-                            --output-styles "HTML,MD"
-
-                    python3 $ACTION_PATH/Reporting/scripts/HorusecReporting.py \
-                            --json  $SCAN_DIR/RemovedHorusecReport.json \
-                            --current-path $ACTION_PATH/Reporting \
-                            --output $REP_DIR/RemovedHorusecReport \
-                            --output-styles "HTML,MD"
+                    for json_file in AddedHorusecReport.json RemovedHorusecReport.json; do
+                        python3 $ACTION_PATH/Reporting/scripts/HorusecReporting.py \
+                                --json  $SCAN_DIR/$json_file \
+                                --current-path $ACTION_PATH/Reporting \
+                                --output $REP_DIR/AddedHorusecReport \
+                                --output-styles "HTML,MD"
+                    done
 
                 ;;
 
