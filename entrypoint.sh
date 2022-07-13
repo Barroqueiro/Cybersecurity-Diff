@@ -108,7 +108,7 @@ for file_base in temp_baseline/* ; do
                 SecretsReport.json)
                     SCAN_DIR=$DIFF_DIR/SecretScan
                     mkdir $SCAN_DIR
-                    python3 comparing.py \
+                    python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/SecretsReport.json \
                             --diff temp_diff/SecretsReport.json \
                             --key "" \
@@ -121,7 +121,7 @@ for file_base in temp_baseline/* ; do
                 HorusecReport.json)
                     SCAN_DIR=$DIFF_DIR/VulnerabilityScan
                     mkdir $SCAN_DIR
-                    python3 comparing.py \
+                    python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/HorusecReport.json \
                             --diff temp_diff/HorusecReport.json \
                             --key "analysisVulnerabilities" \
@@ -135,7 +135,7 @@ for file_base in temp_baseline/* ; do
                 DockleReport.json)
                     SCAN_DIR=$DIFF_DIR/DockleScan
                     mkdir $SCAN_DIR
-                    python3 comparing.py \
+                    python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/DockleReport.json \
                             --diff temp_diff/DockleReport.json \
                             --key "details" \
@@ -149,7 +149,7 @@ for file_base in temp_baseline/* ; do
                 TrivyReport.json)
                     SCAN_DIR=$DIFF_DIR/TrivyScan
                     mkdir $SCAN_DIR
-                    python3 comparing.py \
+                    python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/TrivyReport.json \
                             --diff temp_diff/TrivyReport.json \
                             --key "Results-[0]-Vulnerabilities" \
@@ -163,7 +163,7 @@ for file_base in temp_baseline/* ; do
                 ZapReport.json)
                     SCAN_DIR=$DIFF_DIR/ZapScan
                     mkdir $SCAN_DIR
-                    python3 comparing.py \
+                    python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/ZapReport.json \
                             --diff temp_diff/ZapReport.json \
                             --key "site-[1]-alerts" \
