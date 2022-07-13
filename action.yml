@@ -30,4 +30,5 @@ runs:
       if: always()
       uses: actions/upload-artifact@v3.1.0
       with:
+        name: ${{ steps.entrypoint.outputs.artifact-name }}
         path: ${{ steps.entrypoint.outputs.artifact-name }}
