@@ -110,6 +110,8 @@ for file_base in temp_baseline/* ; do
                 SecretsReport.json)
                     SCAN_DIR=$DIFF_DIR/Debug/SecretScan
                     mkdir $SCAN_DIR
+                    REP_DIR=$DIFF_DIR/SecretScan
+                    mkdir $REP_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/SecretsReport.json \
                             --diff temp_diff/SecretsReport.json \
@@ -118,12 +120,20 @@ for file_base in temp_baseline/* ; do
                             --output-added $SCAN_DIR/AddedSecretReport.json \
                             --output-removed $SCAN_DIR/RemovedSecretReport.json \
                             --separator "-"
+                    
+                    for json_file in AddedSecretReport.json RemovedSecretReport.json; do
+                        python3 $ACTION_PATH/Reporting/scripts/SecretsReporting.py \
+                                --json  $SCAN_DIR/$json_file \
+                                --current-path $ACTION_PATH/Reporting \
+                                --output $REP_DIR/${json_file%%.*} \
+                                --output-styles "HTML,MD"
+                    done
                 ;;
 
                 HorusecReport.json)
                     SCAN_DIR=$DIFF_DIR/Debug/VulnerabilityScan
-                    REP_DIR=$DIFF_DIR/VulnerabilityScan
                     mkdir $SCAN_DIR
+                    REP_DIR=$DIFF_DIR/VulnerabilityScan
                     mkdir $REP_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/HorusecReport.json \
@@ -138,7 +148,7 @@ for file_base in temp_baseline/* ; do
                         python3 $ACTION_PATH/Reporting/scripts/HorusecReporting.py \
                                 --json  $SCAN_DIR/$json_file \
                                 --current-path $ACTION_PATH/Reporting \
-                                --output $REP_DIR/AddedHorusecReport \
+                                --output $REP_DIR/${json_file%%.*} \
                                 --output-styles "HTML,MD"
                     done
 
@@ -147,6 +157,8 @@ for file_base in temp_baseline/* ; do
                 DockleReport.json)
                     SCAN_DIR=$DIFF_DIR/Debug/DockleScan
                     mkdir $SCAN_DIR
+                    REP_DIR=$DIFF_DIR/DockleScan
+                    mkdir $REP_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/DockleReport.json \
                             --diff temp_diff/DockleReport.json \
@@ -156,11 +168,21 @@ for file_base in temp_baseline/* ; do
                             --output-removed $SCAN_DIR/RemovedDockleReport.json \
                             --separator "-"
 
+                    for json_file in AddedDockleReport.json RemovedDockleReport.json; do
+                        python3 $ACTION_PATH/Reporting/scripts/DockleReporting.py \
+                                --json  $SCAN_DIR/$json_file \
+                                --current-path $ACTION_PATH/Reporting \
+                                --output $REP_DIR/${json_file%%.*} \
+                                --output-styles "HTML,MD"
+                    done
+
                 ;;
 
                 TrivyReport.json)
                     SCAN_DIR=$DIFF_DIR/Debug/TrivyScan
                     mkdir $SCAN_DIR
+                    REP_DIR=$DIFF_DIR/TrivyScan
+                    mkdir $REP_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/TrivyReport.json \
                             --diff temp_diff/TrivyReport.json \
@@ -170,11 +192,21 @@ for file_base in temp_baseline/* ; do
                             --output-removed $SCAN_DIR/RemovedTrivyReport.json \
                             --separator "-"
 
+                    for json_file in AddedTrivyReport.json RemovedTrivyReport.json; do
+                        python3 $ACTION_PATH/Reporting/scripts/TrivyReporting.py \
+                                --json  $SCAN_DIR/$json_file \
+                                --current-path $ACTION_PATH/Reporting \
+                                --output $REP_DIR/${json_file%%.*} \
+                                --output-styles "HTML,MD"
+                    done
+
                 ;;
 
                 ZapReport.json)
                     SCAN_DIR=$DIFF_DIR/Debug/ZapScan
                     mkdir $SCAN_DIR
+                    REP_DIR=$DIFF_DIR/ZapScan
+                    mkdir $REP_DIR
                     python3 $ACTION_PATH/comparing.py \
                             --baseline temp_baseline/ZapReport.json \
                             --diff temp_diff/ZapReport.json \
@@ -183,6 +215,14 @@ for file_base in temp_baseline/* ; do
                             --output-added $SCAN_DIR/AddedZapReport.json \
                             --output-removed $SCAN_DIR/RemovedZapReport.json \
                             --separator "-"
+
+                    for json_file in AddedZapReport.json RemovedZapReport.json; do
+                        python3 $ACTION_PATH/Reporting/scripts/ZapReporting.py \
+                                --json  $SCAN_DIR/$json_file \
+                                --current-path $ACTION_PATH/Reporting \
+                                --output $REP_DIR/${json_file%%.*} \
+                                --output-styles "HTML,MD"
+                    done
 
                 ;;
     esac
