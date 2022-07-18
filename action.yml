@@ -5,6 +5,9 @@ inputs:
   debug:
     descripton: 'Enable debugging: Getting shell scripts output and raw tools information'
     default: 'false'
+  output-styles:
+    descripton: 'Enable debugging: Getting shell scripts output and raw tools information'
+    default: 'HTML'
   baseline:
     descripton: 'Baseline'
     required: true
@@ -23,6 +26,7 @@ runs:
             ${{ github.action_path }}/entrypoint.sh
             --debug "${{ inputs.debug }}"
             --action-path "${{ github.action_path }}"
+            --output-styles "${{ inputs.output-styles }}"
             --baseline "${{ inputs.baseline }}"
             --diff "${{ inputs.diff }}"
       shell: bash
