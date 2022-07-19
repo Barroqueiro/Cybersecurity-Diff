@@ -31,16 +31,18 @@ def get_from_keyword(res,keyword):
 
 def put_in_from_keyword(res,keyword,put):
 	keyword_list = keyword.split(SEPARATOR)
-	for key in keyword_list:
-		if "" == key:
-			res = put
-		if "[" in key:
-			akey = int(key.replace("[","").replace("]",""))
-			res = res[akey]
-		elif key not in res:
-			return None
+	keyword_list = [k if "[" not in k else int(k.replace("[","").replace("]","")) for k in keyword_list ]
+	e = "res"
+	for k in keyword_list:
+		if k == "":
+			return put
+		if isinstance(k,int):
+			e += "[" + str(k) + "]"
 		else:
-			res[key] = put
+			e += "['" + str(k) + "']"
+	e += " = put"
+	print(e)
+	exec(e)
 	return res
 
 def clean_from_ignores(list, ignores):
@@ -147,6 +149,7 @@ for idx, b in enumerate(baseline_hashes):
 for idx, d in enumerate(diff_hashes):
 	if d not in baseline_hashes:
 		added.append(diff_list[idx])
+
 
 added = put_in_from_keyword(baseline,config["key"],added)
 
