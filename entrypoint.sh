@@ -144,7 +144,7 @@ for file_base in temp_baseline/* ; do
                             --baseline temp_baseline/TrivyReport.json \
                             --diff temp_diff/TrivyReport.json \
                             --key "Results-[0]-Vulnerabilities" \
-                            --ignore "" \
+                            --ignore "Layer" \
                             --output-added $SCAN_DIR/AddedTrivyReport.json \
                             --output-removed $SCAN_DIR/RemovedTrivyReport.json \
                             --separator "-"
