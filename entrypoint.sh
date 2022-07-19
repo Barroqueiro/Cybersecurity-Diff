@@ -37,9 +37,6 @@ then
     set -x
 fi
 
-echo $BASELINE
-echo $DIFF
-
 file_base=${BASELINE##*/}
 file_diff=${DIFF##*/}
 

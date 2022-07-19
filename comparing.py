@@ -157,7 +157,6 @@ except FileNotFoundError:
 
 removed = put_in_from_keyword(baseline,config["key"],removed)
 
-print(removed)
 # Output json content to 2 files containing added elements and removed elements
 json.dump(added,open(config["output_added"],"w"), indent=4, sort_keys=True)
 json.dump(removed,open(config["output_removed"],"w"), indent=4, sort_keys=True)
