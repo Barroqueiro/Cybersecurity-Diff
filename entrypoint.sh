@@ -96,7 +96,7 @@ for file_base in temp_baseline/* ; do
                             --baseline temp_baseline/HorusecReport.json \
                             --diff temp_diff/HorusecReport.json \
                             --key "analysisVulnerabilities" \
-                            --ignore "analysisID,createdAt,vulnerabilities-vulnerabilityID,vulnerabilityID" \
+                            --ignore "analysisID,createdAt,vulnerabilities-vulnerabilityID,vulnerabilityID,vulnerabilities-deprecatedHashes" \
                             --output-added $SCAN_DIR/AddedHorusecReport.json \
                             --output-removed $SCAN_DIR/RemovedHorusecReport.json \
                             --separator "-"
