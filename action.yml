@@ -14,6 +14,10 @@ inputs:
   diff:
     descripton: 'Different Scan'
     required: true
+outputs:
+  artifact-name:
+    description: Name of the artifact this action creates
+    value: ${{ steps.entrypoint.outputs.artifact }}
 runs:
   using: "composite"
   steps:
