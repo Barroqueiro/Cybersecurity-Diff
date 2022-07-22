@@ -73,6 +73,8 @@ def clean_from_ignores(list, ignores):
 			if flag == 0 and expression != 0:
 				exec(expression)
 	return list
+		
+
 
 def hash_list(list):
 	"""
@@ -130,6 +132,8 @@ else:
 
 # Clean both lists and hash them
 baseline_list_cleaned = clean_from_ignores(baseline_list[::],ignores)
+
+#baseline_list_sorted = sort(baseline_list_cleaned[::])
 
 baseline_hashes = hash_list(baseline_list_cleaned)
 
