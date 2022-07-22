@@ -1,5 +1,6 @@
 # With 2 json inputs, the key (or key path) to a list, and ignorable keys, output the added items and removed items from said list
 
+import copy
 import json
 import hashlib
 import argparse
@@ -41,7 +42,6 @@ def put_in_from_keyword(res,keyword,put):
 		else:
 			e += "['" + str(k) + "']"
 	e += " = put"
-	print(e)
 	exec(e)
 	return res
 
@@ -130,8 +130,10 @@ except FileNotFoundError:
 
 # Get the lists desired
 baseline_list = get_from_keyword(baseline,config["key"])
+copy_baseline_list = copy.deepcopy(baseline_list)
 
 diff_list = get_from_keyword(diff,config["key"])
+copy_diff_list = copy.deepcopy(diff_list)
 
 # Split ignores if they exist
 if config["ignore"] != None:
@@ -159,11 +161,11 @@ removed = []
 # Compare the first input with the second and identify which items where added and which were removed
 for idx, b in enumerate(baseline_hashes):
 	if b not in diff_hashes:
-		removed.append(baseline_list[idx])
+		removed.append(copy_baseline_list[idx])
 
 for idx, d in enumerate(diff_hashes):
 	if d not in baseline_hashes:
-		added.append(diff_list[idx])
+		added.append(copy_diff_list[idx])
 
 
 added = put_in_from_keyword(baseline,config["key"],added)
