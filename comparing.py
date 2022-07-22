@@ -4,6 +4,8 @@ import json
 import hashlib
 import argparse
 
+from matplotlib.pyplot import isinteractive
+
 def file_not_found_error(file):
 	print("[ERROR] Could not find file {}".format(file))
 	exit(1)
@@ -73,8 +75,17 @@ def clean_from_ignores(list, ignores):
 			if flag == 0 and expression != 0:
 				exec(expression)
 	return list
-		
 
+def sort(o):
+	if isinstance(o,list):
+		for el in o:
+			if isinstance(el,list) or isinstance(el,dict):
+				sort(el)
+		if isinstance(o,list) and all([not isinstance(x,dict) for x in o]):
+			o.sort()
+	elif isinstance(o,dict):
+		for key in o:
+			sort(o[key])
 
 def hash_list(list):
 	"""
@@ -133,11 +144,13 @@ else:
 # Clean both lists and hash them
 baseline_list_cleaned = clean_from_ignores(baseline_list[::],ignores)
 
-#baseline_list_sorted = sort(baseline_list_cleaned[::])
+sort(baseline_list_cleaned)
 
 baseline_hashes = hash_list(baseline_list_cleaned)
 
 diff_list_cleaned = clean_from_ignores(diff_list[::],ignores)
+
+sort(diff_list_cleaned)
 
 diff_hashes = hash_list(diff_list_cleaned)
 
