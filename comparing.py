@@ -4,8 +4,6 @@ import json
 import hashlib
 import argparse
 
-from matplotlib.pyplot import isinteractive
-
 def file_not_found_error(file):
 	print("[ERROR] Could not find file {}".format(file))
 	exit(1)
